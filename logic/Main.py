@@ -81,13 +81,14 @@ def main():
                     playerClicks.append(sqSelected)
                 if len(playerClicks) == 2:
                     move = Move(playerClicks[0], playerClicks[1], gs.board)
-                    if move in validMoves:
-                        gs.make_move(move)
-                        print(move.get_chess_notation())
-                        moveMade = True
-                        sqSelected = ()  # reset user clicks
-                        playerClicks = []
-                    else:
+                    for i in range(len(validMoves)):
+                        if move == validMoves[i]:
+                            gs.make_move(validMoves[i])
+                            print(move.get_chess_notation())
+                            moveMade = True
+                            sqSelected = ()  # reset user clicks
+                            playerClicks = []
+                    if not moveMade:
                         playerClicks = [sqSelected]
 
             # key handler
